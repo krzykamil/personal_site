@@ -6,3 +6,11 @@ Elm for view
 
 elm make src/Main.elm --output assets/js/MainElm.js
 For now a simple elm integration. compile and then rackup
+
+TODO:
+1. Filtering - bibliotheca
+2. Sorting - bibliotheca
+3. Tabs for other stuff than bibliotheca
+4. Deploy
+5. Choosing rack or shelf, brings up the picture of it, with a list of books on it below - bibliotheca
+6. Pagination - bibliotheca
