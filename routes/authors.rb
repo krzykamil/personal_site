@@ -1,4 +1,4 @@
-class Bibliotheca
+class PersonalSite
   hash_routes.on 'authors' do |r|
     set_view_subdir 'authors'
   end

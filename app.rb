@@ -7,7 +7,7 @@ require 'roda'
 # require 'tilt/sass'
 require 'ruby_jard'
 
-class Bibliotheca < Roda
+class PersonalSite < Roda
   opts[:check_dynamic_arity] = false
   opts[:check_arity] = :warn
 
@@ -61,9 +61,9 @@ class Bibliotheca < Roda
   end
 
   plugin :sessions,
-         key: '_Bibliotheca.session',
+         key: '_PersonalSite.session',
          # cookie_options: {secure: ENV['RACK_ENV'] != 'test'}, # Uncomment if only allowing https:// access
-         secret: ENV.send((ENV['RACK_ENV'] == 'development' ? :[] : :delete), 'BIBLIOTHECA_SESSION_SECRET')
+         secret: ENV.send((ENV['RACK_ENV'] == 'development' ? :[] : :delete), 'PERSONAL_SITE_SESSION_SECRET')
 
   Unreloader.require('routes') {}
 

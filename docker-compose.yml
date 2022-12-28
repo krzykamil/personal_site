@@ -5,8 +5,8 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=asdfasdf
-      - POSTGRES_USERNAME=bibliotheca
+      - POSTGRES_PASSWORD=example_password123
+      - POSTGRES_USERNAME=personal
       - POSTGRES_HOST=172.20.0.2
   web:
     image: droda
@@ -18,8 +18,8 @@ services:
     depends_on:
       - database
     environment:
-      - POSTGRES_PASSWORD=asdfasdf
-      - POSTGRES_USERNAME=bibliotheca
+      - POSTGRES_PASSWORD=example_password123
+      - POSTGRES_USERNAME=personal
       - POSTGRES_HOST=172.20.0.2
 volumes:
   db_data:

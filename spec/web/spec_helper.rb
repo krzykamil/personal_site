@@ -18,14 +18,14 @@ else
   Refrigerator.freeze_core
 end
 
-Bibliotheca.plugin :not_found do
+PersonalSite.plugin :not_found do
   raise "404 - File Not Found"
 end
-Bibliotheca.plugin :error_handler do |e|
+PersonalSite.plugin :error_handler do |e|
   raise e
 end
 
-Capybara.app = Bibliotheca.freeze.app
+Capybara.app = PersonalSite.freeze.app
 
 class Minitest::HooksSpec
   include Rack::Test::Methods

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Bibliotheca
+class PersonalSite
   # plugin :json
 
   hash_routes.on 'books' do |r|
