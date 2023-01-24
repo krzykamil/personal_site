@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 dev = ENV['RACK_ENV'] == 'development'
 
 if dev
@@ -6,19 +8,19 @@ if dev
 end
 
 require 'rack/unreloader'
-Unreloader = Rack::Unreloader.new(subclasses: %w'Roda Sequel::Model', logger: logger, reload: dev){PersonalSite}
+Unreloader = Rack::Unreloader.new(subclasses: %w[Roda Sequel::Model], logger: logger, reload: dev) { PersonalSite }
 require_relative 'models'
-Unreloader.require('app.rb'){'PersonalSite'}
+Unreloader.require('app.rb') { 'PersonalSite' }
 run(dev ? Unreloader : PersonalSite.freeze.app)
 
 freeze_core = false
-#freeze_core = !dev # Uncomment to enable refrigerator
+# freeze_core = !dev # Uncomment to enable refrigerator
 if freeze_core
   begin
     require 'refrigerator'
   rescue LoadError
   else
-    require 'tilt/sass' unless File.exist?(File.expand_path('../compiled_assets.json', __FILE__))
+    require 'tilt/sass' unless File.exist?(File.expand_path('compiled_assets.json', __dir__))
 
     # When enabling refrigerator, you may need to load additional
     # libraries before freezing the core to work correctly.  You'll
@@ -26,15 +28,15 @@ if freeze_core
     # problems after enabling refrigerator.
 
     # rackup -s webrick
-    #require 'forwardable'
-    #require 'webrick'
+    # require 'forwardable'
+    # require 'webrick'
 
     # rackup -s Puma
-    #require 'yaml' 
-    #Gem.ruby
+    # require 'yaml'
+    # Gem.ruby
 
     # Puma (needed for state file)
-    #require 'yaml'
+    # require 'yaml'
 
     # Unicorn (no changes needed)
 

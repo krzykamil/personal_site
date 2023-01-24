@@ -20,11 +20,14 @@ class PersonalSite < Roda
 
   plugin :route_csrf
   plugin :flash
-  plugin :assets, css: 'app.scss', css_opts: { style: :compressed, cache: false }, timestamp_paths: true, js: 'MainElm.js'
+  plugin :assets, css: 'app.scss', css_opts: { style: :compressed, cache: false }, timestamp_paths: true,
+                  js: 'BibliothecaElm.js'
   plugin :render, escape: true
   plugin :view_options
   plugin :public
   plugin :hash_routes
+  plugin :path
+  # plugin :link_to
 
   logger = ENV['RACK_ENV'] == 'test' ? Class.new { def write(_) end }.new : $stderr
   plugin :common_logger, logger
@@ -62,7 +65,7 @@ class PersonalSite < Roda
 
   plugin :sessions,
          key: '_PersonalSite.session',
-         # cookie_options: {secure: ENV['RACK_ENV'] != 'test'}, # Uncomment if only allowing https:// access
+         cookie_options: { secure: ENV['RACK_ENV'] != 'test' },
          secret: ENV.send((ENV['RACK_ENV'] == 'development' ? :[] : :delete), 'PERSONAL_SITE_SESSION_SECRET')
 
   Unreloader.require('routes') {}
@@ -72,9 +75,8 @@ class PersonalSite < Roda
     r.assets
     check_csrf!
     r.hash_routes('')
-    render("index")
+    render('main')
   end
 
   Sequel::Model.plugin :json_serializer
-
 end

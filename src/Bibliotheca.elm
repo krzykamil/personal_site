@@ -1,5 +1,5 @@
 
-module Main exposing (main, view, update)
+module Bibliotheca exposing (main, view, update)
 
 import Browser
 import Json.Decode as Json
@@ -212,7 +212,7 @@ colors =
 getBooks : Cmd Msg
 getBooks =
     Http.get
-    { url = "http://localhost:9292/books"
+    { url = "http://localhost:9292/books/search"
     , expect = Http.expectJson GotBooks booksListDecoder
     }
 

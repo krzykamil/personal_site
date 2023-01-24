@@ -1,4 +1,6 @@
-ENV["RACK_ENV"] = "test"
+# frozen_string_literal: true
+
+ENV['RACK_ENV'] = 'test'
 require_relative '../warnings_helper'
 require_relative '../../app'
 raise "test database doesn't end with test" unless DB.opts[:database] =~ /test\z/
@@ -19,7 +21,7 @@ else
 end
 
 PersonalSite.plugin :not_found do
-  raise "404 - File Not Found"
+  raise '404 - File Not Found'
 end
 PersonalSite.plugin :error_handler do |e|
   raise e
@@ -27,16 +29,18 @@ end
 
 Capybara.app = PersonalSite.freeze.app
 
-class Minitest::HooksSpec
-  include Rack::Test::Methods
-  include Capybara::DSL
+module Minitest
+  class HooksSpec
+    include Rack::Test::Methods
+    include Capybara::DSL
 
-  def app
-    Capybara.app
-  end
+    def app
+      Capybara.app
+    end
 
-  after do
-    Capybara.reset_sessions!
-    Capybara.use_default_driver
+    after do
+      Capybara.reset_sessions!
+      Capybara.use_default_driver
+    end
   end
 end

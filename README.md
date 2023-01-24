@@ -4,8 +4,7 @@ Based on simple stack from (Roda-Sequel-Stack)[https://github.com/jeremyevans/ro
 Ruby 3.0.1
 Elm for view
 
-elm make src/Main.elm --output assets/js/MainElm.js
-For now a simple elm integration. compile and then rackup
+run with `./run`
 
 TODO:
 1. Filtering - bibliotheca
