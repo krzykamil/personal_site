@@ -20,8 +20,7 @@ class PersonalSite < Roda
 
   plugin :route_csrf
   plugin :flash
-  plugin :assets, css: 'app.scss', css_opts: { style: :compressed, cache: false }, timestamp_paths: true,
-                  js: 'BibliothecaElm.js'
+  plugin :assets, css: 'app.scss', css_opts: { style: :compressed, cache: false }, timestamp_paths: true, js: ['BibliothecaElm.js', 'About.js']
   plugin :render, escape: true
   plugin :view_options
   plugin :public
